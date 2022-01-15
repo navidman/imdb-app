@@ -14,7 +14,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
+Route::post('/movie', [\App\Http\Controllers\HomeController::class, 'store'])->name('movie.store');
 Route::get('/movie', [\App\Http\Controllers\HomeController::class, 'get'])->name('movie.get');
+
 

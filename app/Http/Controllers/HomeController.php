@@ -2,18 +2,27 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\Interfaces\MovieRepositoryInterface;
 use App\Services\MovieData\MovieData;
-use GuzzleHttp\Client;
 use Illuminate\Http\Request;
-use Log;
-use Symfony\Component\DomCrawler\Crawler;
 
 class HomeController extends Controller
 {
+    private $movie_repository;
 
-    public function get()
+    public function __construct(MovieRepositoryInterface $movie_repository)
     {
-        return MovieData::getInfo();
+        $this->movie_repository = $movie_repository;
+    }
+    public function store(Request $request)
+    {
+        $input = $request->all();
+        $movie = $this->movie_repository->store($input);
+        return $this->get($movie->url);
+    }
+    public function get($url)
+    {
+        return MovieData::getInfo($url);
 
     }
 }

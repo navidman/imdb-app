@@ -20,8 +20,7 @@ Class MovieDataService {
         ]);
     }
 
-    public function getInfo() {
-        $url ='https://www.imdb.com/title/tt10872600/';
+    public function getInfo($url) {
         $response = $this->client->get($url);
         $content = $response->getBody()->getContents();
         $crawler = new Crawler( $content );
