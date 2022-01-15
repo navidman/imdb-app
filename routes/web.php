@@ -16,5 +16,5 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/test', [\App\Http\Controllers\HomeController::class, 'test'])->name('test');
+Route::get('/movie', [\App\Http\Controllers\HomeController::class, 'get'])->name('movie.get');
 
